@@ -1,0 +1,106 @@
+<html>
+
+<head>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <style>
+        body {
+            background-color: darkgrey;
+        }
+        
+        .footer {
+            position: absolute;
+            bottom: 0;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="h1 text-center">
+            WTS Keyboard Generator
+        </div>
+        <p></p>
+        <div class="row text-center">
+            <div class=" col">
+                Click the text to copy it!
+            </div>
+            <div class=" col">
+                Refresh for a new reason to sell!
+            </div>
+        </div>
+        <hr></hr>
+        <div id="main" class="container text-center font-weight-bold">
+
+        </div>
+        <div class="footer footer-copyright text-center py-3">
+            Source on <a href="https://github.com/keebmemes/wts-keeb-generator">Github</a>; &copy; 2021 Keeb Memes
+        </div>
+    </div>
+
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha256-4+XzXVhsDmqanXGHaHvgh1gMQKX40OUvDEBTu8JcmNs=" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+
+    <script>
+        $(function() {
+            console.log("loaded")
+            document.getElementById("main").addEventListener("click", function() {
+                copy()
+                alert("Copied!")
+
+            });
+
+            function copy() {
+                var target = document.getElementById('main');
+                var range, select;
+                if (document.createRange) {
+                    range = document.createRange();
+                    range.selectNode(target)
+                    select = window.getSelection();
+                    select.removeAllRanges();
+                    select.addRange(range);
+                    document.execCommand('copy');
+                    select.removeAllRanges();
+                } else {
+                    range = document.body.createTextRange();
+                    range.moveToElementText(target);
+                    range.select();
+                    document.execCommand('copy');
+                }
+            }
+            const reasons1 = [
+                "mother recently had to go to the hospital",
+                "pet rabbit ate some celery"
+            ]
+            const reasons2 = [
+                "hospital bills are expensive",
+                "my credit cards are all maxxed out",
+                "it's raining outisde",
+                "my car got it's tire stolen"
+            ]
+            const keyboards = [
+                "Jane V2 CE",
+                "Matrix 1.2OG",
+                "OG Keycult 1/65"
+            ]
+
+            let reason1 = rando(reasons1)
+            let reason2 = rando(reasons2)
+            let keeb = rando(keyboards)
+            let price = Math.floor(Math.random() * keyboards.length * 10) * 100 * keyboards.length
+
+            $('#main').html(`
+            My ${reason1} and I need money so I am selling my ${keeb}. 
+            Because I need the money I am looking to sell this keeb for ${price}.
+            You have to understand that I don't want to let it go because my ${reason1}, but I am strapped for cash and really need it since ${reason2}. 
+            `)
+        })
+
+        function rando(arr) {
+            let rand = Math.floor(Math.random() * arr.length)
+            return arr[rand]
+        }
+    </script>
+</body>
+
+</html>
