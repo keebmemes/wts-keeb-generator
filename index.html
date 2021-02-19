@@ -96,7 +96,7 @@
             let reason1 = rando(reasons1)
             let reason2 = rando(reasons2)
             let keeb = rando(keyboards)
-            let price = Math.floor(Math.random() * keyboards.length * 10) * 100 * keyboards.length
+            let price = Math.floor((Math.random() * keyboards.length) + 10) * 100 * keyboards.length
 
             $('#main').html(`
             My ${reason1} and I need money so I am selling my ${keeb}. 
